@@ -1,3 +1,10 @@
+/*
+   Title: Not Found Handler
+   Description: Not Found Handler
+   Author: Iqbal Hossain
+   Date: 08-January-2022
+   Modified: 08-January-2022
+*/
 // mudule scaffolding
 const handler = {};
 

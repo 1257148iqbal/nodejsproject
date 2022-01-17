@@ -4,6 +4,7 @@ const url = require("url");
 const { StringDecoder } = require("string_decoder");
 const routes = require('../routes');
 const {notFoundHandler} = require('../handlers/routeHanders/notFoundHandler');
+const {parseJSON}=require('../helpers/utilities')
 
 //modue scaffolding
 const handler ={};
@@ -32,7 +33,15 @@ handler.handleReqRes = (req, res) => {
 
     const chosenHanlder = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
 
-    chosenHanlder(requestProperties, (statusCode, payload)=>{
+  
+    req.on("data", (buffer) => {
+      realData += decoder.write(buffer);
+    });
+  
+    req.on("end", () => {
+      realData += decoder.end();
+      requestProperties.body= parseJSON(realData);
+      chosenHanlder(requestProperties, (statusCode, payload)=>{
         statusCode = typeof(statusCode) === 'number' ? statusCode : 500;
         payload = typeof(payload) === 'object' ? payload: {};
 
@@ -44,13 +53,6 @@ handler.handleReqRes = (req, res) => {
         res.end(payloadString);
     });
   
-    req.on("data", (buffer) => {
-      realData += decoder.write(buffer);
-    });
-  
-    req.on("end", () => {
-      realData += decoder.end();
-      console.log(realData);
       res.end("Hello World!!");
     });
   };
