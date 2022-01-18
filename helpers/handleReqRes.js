@@ -52,9 +52,7 @@ handler.handleReqRes = (req, res) => {
         res.writeHead(statusCode);
         res.end(payloadString);
     });
-  
-      res.end("Hello World!!");
     });
-  };
+  }; 
 
 module.exports = handler;

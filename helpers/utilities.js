@@ -38,4 +38,22 @@ utilities.hash = (str) => {
   }
 };
 
+// create rendom string
+utilities.createRendomString = (strlength) => {
+  let length= strlength;
+  length=typeof(strlength)==='number' && strlength > 0 ? strlength: false;
+
+  if(length){
+    let possiblecharecters= 'abcdefghijklmnopqrstuvwxyz1234567890';
+    let output= '';
+    for(let i=1; i<= length; i+=1){
+      const rendomcharectoer= possiblecharecters.charAt(Math.floor(Math.random() * possiblecharecters.length));
+      output += rendomcharectoer;
+    }
+    return output;
+  }
+    return false;
+  
+};
+
 module.exports = utilities;
