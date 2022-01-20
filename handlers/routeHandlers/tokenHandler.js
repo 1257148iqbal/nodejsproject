@@ -1,8 +1,8 @@
 /*
  * Title: Token Handler
  * Description: Handler to handle token related routes
- * Author: Sumit Saha ( Learn with Sumit )
- * Date: 12/05/2020
+ * Author:  Iqbal Hossain
+ * Date: 12/05/2021
  *
  */
 // dependencies
